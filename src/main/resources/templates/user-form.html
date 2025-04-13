@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма пользователя</title>
+</head>
+<body>
+
+<h2 th:text="${user.id == null ? 'Создание нового пользователя' : 'Редактирование пользователя'}"></h2>
+
+<!-- Форма создания нового пользователя -->
+<form th:if="${user.id == null}" th:action="@{/admin/save}" th:object="${user}" method="post">
+    <label>Имя:</label>
+    <input type="text" th:field="*{firstName}" required/><br/>
+
+    <label>Фамилия:</label>
+    <input type="text" th:field="*{lastName}" required/><br/>
+
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" required/><br/>
+
+    <label>Пароль:</label>
+    <input type="password" th:field="*{password}" required/><br/>
+
+    <label>Роли:</label>
+    <select name="rolesNames" multiple size="2">
+        <option th:each="role : ${allRoles}"
+                th:value="${role.roleName}"
+                th:text="${role.roleName}">
+        </option>
+    </select><br/><br/>
+
+    <button type="submit">Создать</button>
+</form>
+
+<!-- Форма редактирования существующего пользователя -->
+<form th:if="${user.id != null}" th:action="@{/admin/update}" th:object="${user}" method="post">
+    <!-- Обязательно передаём id -->
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>Имя:</label>
+    <input type="text" th:field="*{firstName}" required/><br/>
+
+    <label>Фамилия:</label>
+    <input type="text" th:field="*{lastName}" required/><br/>
+
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" required/><br/>
+
+    <label>Пароль:</label>
+    <input type="password" th:field="*{password}" placeholder="Оставьте пустым, чтобы не менять"/><br/>
+
+    <label>Роли:</label>
+    <select name="roleNames" multiple size="2">
+        <option th:each="role : ${allRoles}"
+                th:value="${role.roleName}"
+                th:text="${role.roleName}"
+                th:selected="${#lists.contains(user.roles, role)}">
+        </option>
+    </select><br/><br/>
+
+    <button type="submit">Сохранить</button>
+</form>
+
+<br/>
+<a href="/admin">← Назад</a>
+
+<br/><br/>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Выйти</button>
+</form>
+
+</body>
+</html>
