@@ -16,11 +16,9 @@ public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
     private EntityManager entityManager;
-    private final PasswordEncoder passwordEncoder;
 
     public UserDaoImpl(EntityManager entityManager, PasswordEncoder passwordEncoder) {
         this.entityManager = entityManager;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override

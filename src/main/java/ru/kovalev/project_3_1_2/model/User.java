@@ -27,9 +27,6 @@ public class User implements UserDetails {
 
     private String password;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
@@ -80,6 +77,10 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
