@@ -31,7 +31,7 @@ public class AdminController {
     public String newUserForm(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("allRoles", userService.getAllRoles()); // теперь роли из сервиса
-        return "user-form";
+        return "user";
     }
 
     @PostMapping("/save")
@@ -45,7 +45,7 @@ public class AdminController {
     public String editUserForm(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", userService.showUser(id));
         model.addAttribute("allRoles", userService.getAllRoles());
-        return "user-form";
+        return "user";
     }
 
     @PostMapping("/update")
