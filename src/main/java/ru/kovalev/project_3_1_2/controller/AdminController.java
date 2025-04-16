@@ -36,7 +36,7 @@ public class AdminController {
 
     @PostMapping("/save")
     public String saveUser(@ModelAttribute("user") User user,
-                           @RequestParam("rolesNames") List<String> rolesNames) {
+                           @RequestParam("roleNames") List<String> rolesNames) {
         userService.saveUserWithRoles(user, rolesNames);
         return "redirect:/admin";
     }
@@ -57,8 +57,8 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
+    @PostMapping("/delete")
+    public String deleteUser(@RequestParam("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
     }
