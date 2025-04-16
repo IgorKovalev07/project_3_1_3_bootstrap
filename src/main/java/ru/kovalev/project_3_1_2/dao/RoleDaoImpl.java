@@ -6,9 +6,11 @@ import ru.kovalev.project_3_1_2.model.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+@Transactional
 public class RoleDaoImpl implements RoleDao {
 
     @PersistenceContext
@@ -21,6 +23,11 @@ public class RoleDaoImpl implements RoleDao {
         } catch (NoResultException e) {
             return null;
         }
+    }
+
+    @Override
+    public void save(Role role) {
+        entityManager.persist(role);
     }
 
     @Override
