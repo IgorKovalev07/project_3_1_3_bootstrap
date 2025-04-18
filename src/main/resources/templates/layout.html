@@ -26,14 +26,17 @@
         <div class="col-md-2 bg-white sidebar p-0 border-end">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active bg-primary text-white" href="#">Admin</a>
+                    <a class="nav-link"
+                       th:classappend="${activeTab == 'admin'} ? 'active bg-primary text-white' : ''"
+                       th:href="@{/admin}">Admin</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user">User</a>
+                    <a class="nav-link"
+                       th:classappend="${activeTab == 'user'} ? 'active bg-primary text-white' : ''"
+                       th:href="@{/user}">User</a>
                 </li>
             </ul>
         </div>
-
         <!-- Main content -->
         <div class="col-md-10 p-4">
 

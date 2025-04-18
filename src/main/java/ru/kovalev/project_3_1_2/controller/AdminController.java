@@ -24,6 +24,7 @@ public class AdminController {
     public String listUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("allRoles", userService.getAllRoles());
+        model.addAttribute("activeTab", "admin");
         return "admin";
     }
 

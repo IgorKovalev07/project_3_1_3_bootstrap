@@ -23,6 +23,7 @@ public class UserController {
     public String showUserInfo(Model model, Principal principal) {
         User user = userService.findByEmail(principal.getName());
         model.addAttribute("user", user);
+        model.addAttribute("activeTab", "user");
         return "user";
     }
 }
